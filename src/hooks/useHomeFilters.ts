@@ -30,7 +30,8 @@ export function useHomeFilters() {
 
     useEffect(() => {
         let cancelled = false;
-        setIsLoading(true);
+        const load = () => setIsLoading(true);
+        load();
         providerService.getAllProviders().then((data) => {
             if (!cancelled) {
                 setAllProviders(data);

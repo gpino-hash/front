@@ -13,7 +13,7 @@ interface MobileFilterDrawerProps {
 
 const DRAG_CLOSE_THRESHOLD = 100;
 
-function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }: MobileFilterDrawerProps) {
+export function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }: MobileFilterDrawerProps) {
     const drawerRef = useRef<HTMLDivElement>(null);
     const dragStartY = useRef(0);
     const dragOffsetRef = useRef(0);
@@ -47,13 +47,15 @@ function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }
         if (isOpen) {
             document.addEventListener("keydown", handleKeyDown);
             document.body.style.overflow = "hidden";
-            setDragOffset(0);
+            dragOffsetRef.current = 0;
             return () => {
                 document.removeEventListener("keydown", handleKeyDown);
                 document.body.style.overflow = "";
             };
         }
     }, [isOpen, handleKeyDown]);
+
+    const appliedDragOffset = isOpen ? dragOffset : 0;
 
     // Drag-to-close handlers
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -82,7 +84,7 @@ function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }
             {/* Backdrop */}
             <div
                 className={cn(
-                    "fixed inset-0 bg-black/50 z-[60] transition-opacity duration-300",
+                    "fixed inset-0 bg-black/50 z-60 transition-opacity duration-300",
                     isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
                 )}
                 aria-hidden="true"
@@ -95,9 +97,9 @@ function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }
                 role="dialog"
                 aria-modal="true"
                 aria-label="Filtros"
-                style={{ transform: isOpen ? `translateY(${dragOffset}px)` : undefined }}
+                style={{ transform: isOpen ? `translateY(${appliedDragOffset}px)` : undefined }}
                 className={cn(
-                    "fixed inset-x-0 bottom-0 z-[70] bg-white rounded-t-3xl shadow-2xl max-h-[85vh] flex flex-col",
+                    "fixed inset-x-0 bottom-0 z-70 bg-white rounded-t-3xl shadow-2xl max-h-[85vh] flex flex-col",
                     isOpen
                         ? dragOffset > 0 ? "" : "transition-transform duration-300 ease-out"
                         : "transition-transform duration-300 ease-out translate-y-full"
@@ -105,7 +107,7 @@ function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }
             >
                 {/* Sticky header: handle + title */}
                 <div
-                    className="flex-shrink-0 touch-none"
+                    className="shrink-0 touch-none"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
@@ -144,7 +146,7 @@ function MobileFilterDrawer({ isOpen, onClose, children, activeFilterCount = 0 }
     );
 }
 
-function MobileFilterTrigger({ activeFilterCount, onClick }: { activeFilterCount: number; onClick: () => void }) {
+export function MobileFilterTrigger({ activeFilterCount, onClick }: { activeFilterCount: number; onClick: () => void }) {
     return (
         <button
             onClick={onClick}
@@ -160,5 +162,3 @@ function MobileFilterTrigger({ activeFilterCount, onClick }: { activeFilterCount
         </button>
     );
 }
-
-export { MobileFilterDrawer, MobileFilterTrigger };

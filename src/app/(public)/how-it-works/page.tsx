@@ -3,12 +3,10 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/layout/container";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Tabs } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import Link from "next/link";
 
 export default function HowItWorksPage() {
     const [activeTab, setActiveTab] = useState("customers");
@@ -24,7 +22,7 @@ export default function HowItWorksPage() {
                         <div className="max-w-3xl mx-auto">
                             <Badge variant="warning" className="mb-6 h-8 px-4 text-xs">GU&Iacute;A COMPLETA</Badge>
                             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6">Tu camino al servicio <span className="text-blue-300 font-extrabold">perfecto</span></h1>
-                            <p className="text-zinc-400 text-lg md:text-xl font-medium">Descubr&iacute; c&oacute;mo Profesio revoluciona la forma de contratar y ofrecer servicios profesionales en LATAM.</p>
+                            <p className="text-zinc-400 text-lg md:text-xl font-medium">Descubr&iacute; c&oacute;mo Taskao revoluciona la forma de contratar y ofrecer servicios profesionales en LATAM.</p>
                         </div>
                     </Container>
                 </section>
@@ -49,7 +47,7 @@ export default function HowItWorksPage() {
                                             { icon: "search", title: "1. Busc\u00e1 y filtr\u00e1", desc: "Explor\u00e1 cientos de categor\u00edas. Us\u00e1 nuestros filtros de ubicaci\u00f3n, precio y rating para encontrar exactamente lo que necesit\u00e1s." },
                                             { icon: "work", title: "2. Compar\u00e1 perfiles", desc: "Revis\u00e1 las fotos de trabajos anteriores, le\u00e9 las rese\u00f1as de otros clientes y verific\u00e1 los precios antes de decidir." },
                                             { icon: "calendar_month", title: "3. Reserv\u00e1 tu fecha", desc: "Eleg\u00ed el d\u00eda y horario que mejor te convenga. Chate\u00e1 con el profesional para coordinar detalles espec\u00edficos." },
-                                            { icon: "credit_card", title: "4. Pag\u00e1 con seguridad", desc: "El pago queda resguardado por Profesio. Solo se libera al profesional una vez que confirm\u00e1s que el trabajo termin\u00f3." }
+                                            { icon: "credit_card", title: "4. Pag\u00e1 con seguridad", desc: "El pago queda resguardado por Taskao. Solo se libera al profesional una vez que confirm\u00e1s que el trabajo termin\u00f3." }
                                         ].map((step, i) => (
                                             <div key={i} className="flex gap-6">
                                                 <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary shrink-0 shadow-lg shadow-blue-500/5">
@@ -94,7 +92,7 @@ export default function HowItWorksPage() {
                                             { icon: "person", title: "1. Cre\u00e1 tu perfil", desc: "Registrate, carg\u00e1 tus servicios y fotos de tus trabajos. Un perfil completo atrae 5 veces m\u00e1s clientes." },
                                             { icon: "verified_user", title: "2. Verific\u00e1 tu identidad", desc: "Carg\u00e1 tu documentaci\u00f3n para obtener el sello de 'Profesional Verificado' y generar mayor confianza." },
                                             { icon: "chat", title: "3. Recib\u00ed solicitudes", desc: "Te notificaremos cuando un cliente est\u00e9 interesado. Gestion\u00e1 todos tus turnos desde un solo lugar." },
-                                            { icon: "credit_card", title: "4. Cobr\u00e1 sin vueltas", desc: "Recib\u00ed tus pagos directamente en tu cuenta bancaria. Profesio te garantiza el cobro de cada servicio realizado." }
+                                            { icon: "credit_card", title: "4. Cobr\u00e1 sin vueltas", desc: "Recib\u00ed tus pagos directamente en tu cuenta bancaria. Taskao te garantiza el cobro de cada servicio realizado." }
                                         ].map((step, i) => (
                                             <div key={i} className="flex gap-6">
                                                 <div className="w-14 h-14 bg-zinc-100 rounded-xl flex items-center justify-center text-zinc-800 shrink-0 shadow-lg">
@@ -116,12 +114,12 @@ export default function HowItWorksPage() {
                     <section className="py-24 max-w-3xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-800 mb-4">Preguntas Frecuentes</h2>
-                            <p className="text-zinc-500 font-medium">Todo lo que necesit&aacute;s saber sobre Profesio.</p>
+                            <p className="text-zinc-500 font-medium">Todo lo que necesit&aacute;s saber sobre Taskao.</p>
                         </div>
 
                         <div className="space-y-4">
                             {[
-                                { q: "\u00bfEs seguro contratar por Profesio?", a: "S\u00ed, absolutamente. Verificamos la identidad de cada profesional y resguardamos tu pago hasta que el servicio es completado satisfactoriamente." },
+                                { q: "\u00bfEs seguro contratar por Taskao?", a: "S\u00ed, absolutamente. Verificamos la identidad de cada profesional y resguardamos tu pago hasta que el servicio es completado satisfactoriamente." },
                                 { q: "\u00bfC\u00f3mo se realizan los pagos?", a: "Aceptamos todas las tarjetas de cr\u00e9dito, d\u00e9bito y transferencias. El dinero permanece seguro en nuestra plataforma hasta que el trabajo finaliza." },
                                 { q: "\u00bfQu\u00e9 pasa si tengo un problema con el servicio?", a: "Nuestro equipo de soporte est\u00e1 disponible 24/7 para resolver cualquier inconveniente o disputa que pueda surgir." },
                                 { q: "\u00bfTiene costo registrarse?", a: "No, el registro es totalmente gratuito tanto para clientes como para profesionales." }

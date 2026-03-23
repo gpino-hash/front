@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Profesio - Find Trusted Professionals",
+  title: "Taskao - Find Trusted Professionals",
   description: "Find and book trusted professionals for any service. Plumbing, electrical, cleaning, painting, and more.",
 };
 
@@ -20,14 +20,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="js-focus-visible" data-js-focus-visible="">
+    <html lang="en" className="js-focus-visible" data-js-focus-visible="" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(t==null&&window.matchMedia("(prefers-color-scheme:dark)").matches);if(d)document.documentElement.classList.add("dark")}catch(e){}})()`,
+          }}
+        />
       </head>
-      <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col bg-background-light text-slate-900`}>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100`}>
         <AppProviders>
           {children}
         </AppProviders>

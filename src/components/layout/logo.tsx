@@ -77,7 +77,7 @@ function Logo({ size = "md", variant = "dark", className }: LogoProps) {
                         : "text-white"
                 )}
             >
-                Profesio
+                Taskao
             </span>
         </Link>
     );

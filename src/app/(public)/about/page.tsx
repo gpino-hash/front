@@ -3,7 +3,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/layout/container";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export default function AboutPage() {
@@ -22,7 +21,7 @@ export default function AboutPage() {
                         <div className="aspect-video bg-zinc-200 rounded-2xl mb-16 overflow-hidden relative">
                             <div className="absolute inset-0 bg-primary-dark/80 flex items-end p-12">
                                 <p className="text-white text-2xl font-bold max-w-2xl leading-relaxed">
-                                    "Nacimos con el objetivo de profesionalizar los servicios para el hogar en LATAM, brindando seguridad y transparencia."
+                                    &ldquo;Nacimos con el objetivo de profesionalizar los servicios para el hogar en LATAM, brindando seguridad y transparencia.&rdquo;
                                 </p>
                             </div>
                         </div>

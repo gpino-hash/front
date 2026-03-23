@@ -4,7 +4,6 @@ import { use } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { SkeletonCard } from "@/components/ui/skeleton-card";
 import { useProviderProfile } from "@/hooks/useProviderProfile";
 import { ProviderGallery } from "@/components/features/provider/ProviderGallery";
 import { ProviderProfileCard } from "@/components/features/provider/ProviderProfileCard";
@@ -51,7 +50,7 @@ export default function ProviderProfilePage({ params }: { params: Promise<{ id: 
             <div className="min-h-screen bg-background-light flex flex-col">
                 <Header />
                 <main className="flex-1 flex items-center justify-center">
-                    <p className="text-xl font-bold text-zinc-500">Profesional no encontrado</p>
+                    <p className="text-xl font-bold text-zinc-500">Taskaonal no encontrado</p>
                 </main>
                 <Footer />
             </div>

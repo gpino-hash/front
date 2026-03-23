@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useCategoryDetails } from "@/hooks/useCategoryDetails";
-import Link from "next/link";
 
 export default function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
     const { category: slug } = use(params);

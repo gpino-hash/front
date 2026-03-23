@@ -174,7 +174,7 @@ function FilterPanel({
                             <p className="text-sm font-semibold text-slate-700 group-hover:text-slate-900 transition-colors">
                                 Sólo verificados
                             </p>
-                            <p className="text-[11px] text-slate-400 mt-0.5">Profesionales con identidad verificada</p>
+                            <p className="text-[11px] text-slate-400 mt-0.5">Taskaonales con identidad verificada</p>
                         </div>
                         <ToggleSwitch
                             id="toggle-verified"

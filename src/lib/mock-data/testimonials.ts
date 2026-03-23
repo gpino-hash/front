@@ -21,7 +21,7 @@ export const testimonials: Testimonial[] = [
         id: "t3",
         name: "Ricardo Lagos",
         avatar: "RL",
-        role: "Electricista en Profesio",
+        role: "Electricista en Taskao",
         content: "Desde que me registré como profesional, mi agenda siempre está llena. La plataforma es muy fácil de usar.",
         rating: 4.8
     }

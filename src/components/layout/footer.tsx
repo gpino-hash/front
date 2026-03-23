@@ -9,7 +9,7 @@ const footerLinks = {
         { label: "Buscar servicios", href: "/" },
         { label: "Convertite en Pro", href: "/register/provider" },
     ],
-    Compañía: [
+    Compania: [
         { label: "Acerca de nosotros", href: "/about" },
         { label: "Blog", href: "#" },
         { label: "Trabaja con nosotros", href: "#" },
@@ -109,7 +109,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-white/[0.07] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-xs text-slate-600 font-medium">
-                        &copy; {new Date().getFullYear()} Profesio Inc. — Todos los derechos reservados.
+                        &copy; {new Date().getFullYear()} Taskao Inc. — Todos los derechos reservados.
                     </p>
                     <div className="flex items-center gap-2 text-xs text-slate-600">
                         <span className="material-symbols-outlined text-[14px] text-primary">location_on</span>

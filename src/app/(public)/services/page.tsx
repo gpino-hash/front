@@ -4,7 +4,6 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { SkeletonCard } from "@/components/ui/skeleton-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { SectionHeader } from "@/components/ui/section-header";
 import { useServicesCatalog } from "@/hooks/useServicesCatalog";
@@ -154,8 +153,6 @@ export default function ServicesPage() {
                                 activeCategory={activeCategory}
                                 setActiveCategory={setActiveCategory}
                                 isLoading={isLoading}
-                                searchQuery={searchQuery}
-                                setSearchQuery={setSearchQuery}
                             />
 
                             {/* Content */}
@@ -203,15 +200,11 @@ function Sidebar({
     activeCategory,
     setActiveCategory,
     isLoading,
-    searchQuery,
-    setSearchQuery,
 }: {
     categories: Category[];
     activeCategory: string | null;
     setActiveCategory: (id: string | null) => void;
     isLoading: boolean;
-    searchQuery: string;
-    setSearchQuery: (q: string) => void;
 }) {
     return (
         <aside className="hidden lg:block lg:w-72 flex-shrink-0">
