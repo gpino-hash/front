@@ -143,7 +143,7 @@ export default function ProviderRegisterPage() {
                     </div>
 
                     {/* Card */}
-                    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-xl dark:shadow-2xl">
+                    <div className="bg-white dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 rounded-xl p-8 shadow-[0_8px_40px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-2xl">
 
                         {/* Stepper */}
                         <div className="mb-10">
