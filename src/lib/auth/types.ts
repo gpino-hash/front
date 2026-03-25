@@ -1,6 +1,9 @@
 // Auth roles matching backend enum
 export type AuthRole = "CLIENT" | "PROVIDER" | "ADMIN" | "SUPER_ADMIN";
 
+// OAuth providers
+export type OAuthProvider = "google";
+
 // User as returned by auth endpoints
 export interface AuthUser {
   id: string;
@@ -8,6 +11,9 @@ export interface AuthUser {
   roles: AuthRole[];
   emailVerified?: boolean;
   twoFactorEnabled?: boolean;
+  // OAuth fields
+  googleId?: string;
+  hasPassword?: boolean;
   // Profile fields (from /users/:id)
   firstName?: string;
   lastName?: string;
@@ -80,4 +86,12 @@ export interface TwoFactorLoginResult {
   success: boolean;
   user?: AuthUser;
   error?: string;
+}
+
+// OAuth types
+export interface OAuthCallbackResult {
+  success: boolean;
+  user?: AuthUser;
+  error?: string;
+  isNewUser?: boolean;
 }

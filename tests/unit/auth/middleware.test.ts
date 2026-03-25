@@ -13,7 +13,7 @@ vi.mock("next/server", () => {
   return { NextResponse: MockNextResponse };
 });
 
-import { middleware } from "@/middleware";
+import { proxy as middleware } from "@/proxy";
 import type { NextRequest } from "next/server";
 
 function createMockRequest(
@@ -129,8 +129,8 @@ describe("Middleware - Unauthenticated users", () => {
 describe("Middleware - Authenticated users on auth pages", () => {
   it("should redirect CLIENT from /login to /dashboard/cliente", () => {
     const request = createMockRequest("/login", {
-      profesio_auth_token: "u1",
-      profesio_user_roles: JSON.stringify(["CLIENT"]),
+      taskao_auth_token: "u1",
+      taskao_user_roles: JSON.stringify(["CLIENT"]),
     });
     const response = middleware(request) as any;
 
@@ -140,8 +140,8 @@ describe("Middleware - Authenticated users on auth pages", () => {
 
   it("should redirect PROVIDER from /login to /dashboard/proveedor", () => {
     const request = createMockRequest("/login", {
-      profesio_auth_token: "u2",
-      profesio_user_roles: JSON.stringify(["PROVIDER"]),
+      taskao_auth_token: "u2",
+      taskao_user_roles: JSON.stringify(["PROVIDER"]),
     });
     const response = middleware(request) as any;
 
@@ -151,8 +151,8 @@ describe("Middleware - Authenticated users on auth pages", () => {
 
   it("should redirect PROVIDER+CLIENT from /login to /dashboard/proveedor", () => {
     const request = createMockRequest("/login", {
-      profesio_auth_token: "u3",
-      profesio_user_roles: JSON.stringify(["CLIENT", "PROVIDER"]),
+      taskao_auth_token: "u3",
+      taskao_user_roles: JSON.stringify(["CLIENT", "PROVIDER"]),
     });
     const response = middleware(request) as any;
 
@@ -162,8 +162,8 @@ describe("Middleware - Authenticated users on auth pages", () => {
 
   it("should redirect authenticated user from /register", () => {
     const request = createMockRequest("/register", {
-      profesio_auth_token: "u1",
-      profesio_user_roles: JSON.stringify(["CLIENT"]),
+      taskao_auth_token: "u1",
+      taskao_user_roles: JSON.stringify(["CLIENT"]),
     });
     const response = middleware(request) as any;
 
@@ -173,8 +173,8 @@ describe("Middleware - Authenticated users on auth pages", () => {
 
   it("should redirect authenticated user from /forgot-password", () => {
     const request = createMockRequest("/forgot-password", {
-      profesio_auth_token: "u1",
-      profesio_user_roles: JSON.stringify(["CLIENT"]),
+      taskao_auth_token: "u1",
+      taskao_user_roles: JSON.stringify(["CLIENT"]),
     });
     const response = middleware(request) as any;
 
@@ -183,8 +183,8 @@ describe("Middleware - Authenticated users on auth pages", () => {
 
   it("should redirect from /register/provider when authenticated", () => {
     const request = createMockRequest("/register/provider", {
-      profesio_auth_token: "u1",
-      profesio_user_roles: JSON.stringify(["CLIENT"]),
+      taskao_auth_token: "u1",
+      taskao_user_roles: JSON.stringify(["CLIENT"]),
     });
     const response = middleware(request) as any;
 
@@ -198,8 +198,8 @@ describe("Middleware - Authenticated users on auth pages", () => {
 describe("Middleware - Role-based access", () => {
   it("should allow CLIENT to access /dashboard/cliente", () => {
     const request = createMockRequest("/dashboard/cliente", {
-      profesio_auth_token: "u1",
-      profesio_user_roles: JSON.stringify(["CLIENT"]),
+      taskao_auth_token: "u1",
+      taskao_user_roles: JSON.stringify(["CLIENT"]),
     });
     const response = middleware(request) as any;
 
@@ -208,8 +208,8 @@ describe("Middleware - Role-based access", () => {
 
   it("should allow PROVIDER to access /dashboard/proveedor", () => {
     const request = createMockRequest("/dashboard/proveedor", {
-      profesio_auth_token: "u2",
-      profesio_user_roles: JSON.stringify(["PROVIDER"]),
+      taskao_auth_token: "u2",
+      taskao_user_roles: JSON.stringify(["PROVIDER"]),
     });
     const response = middleware(request) as any;
 
@@ -218,8 +218,8 @@ describe("Middleware - Role-based access", () => {
 
   it("should redirect CLIENT away from /dashboard/proveedor", () => {
     const request = createMockRequest("/dashboard/proveedor", {
-      profesio_auth_token: "u1",
-      profesio_user_roles: JSON.stringify(["CLIENT"]),
+      taskao_auth_token: "u1",
+      taskao_user_roles: JSON.stringify(["CLIENT"]),
     });
     const response = middleware(request) as any;
 
@@ -229,8 +229,8 @@ describe("Middleware - Role-based access", () => {
 
   it("should redirect PROVIDER away from /dashboard/cliente", () => {
     const request = createMockRequest("/dashboard/cliente", {
-      profesio_auth_token: "u2",
-      profesio_user_roles: JSON.stringify(["PROVIDER"]),
+      taskao_auth_token: "u2",
+      taskao_user_roles: JSON.stringify(["PROVIDER"]),
     });
     const response = middleware(request) as any;
 
@@ -240,8 +240,8 @@ describe("Middleware - Role-based access", () => {
 
   it("should allow dual-role user to access /dashboard/cliente", () => {
     const request = createMockRequest("/dashboard/cliente", {
-      profesio_auth_token: "u3",
-      profesio_user_roles: JSON.stringify(["CLIENT", "PROVIDER"]),
+      taskao_auth_token: "u3",
+      taskao_user_roles: JSON.stringify(["CLIENT", "PROVIDER"]),
     });
     const response = middleware(request) as any;
 
@@ -250,8 +250,8 @@ describe("Middleware - Role-based access", () => {
 
   it("should allow dual-role user to access /dashboard/proveedor", () => {
     const request = createMockRequest("/dashboard/proveedor", {
-      profesio_auth_token: "u3",
-      profesio_user_roles: JSON.stringify(["CLIENT", "PROVIDER"]),
+      taskao_auth_token: "u3",
+      taskao_user_roles: JSON.stringify(["CLIENT", "PROVIDER"]),
     });
     const response = middleware(request) as any;
 
@@ -260,8 +260,8 @@ describe("Middleware - Role-based access", () => {
 
   it("should allow ADMIN to access /dashboard (no role restriction on base)", () => {
     const request = createMockRequest("/dashboard", {
-      profesio_auth_token: "admin1",
-      profesio_user_roles: JSON.stringify(["ADMIN"]),
+      taskao_auth_token: "admin1",
+      taskao_user_roles: JSON.stringify(["ADMIN"]),
     });
     const response = middleware(request) as any;
 
@@ -275,8 +275,8 @@ describe("Middleware - Role-based access", () => {
 describe("Middleware - Edge cases", () => {
   it("should handle authenticated user with no roles cookie", () => {
     const request = createMockRequest("/dashboard/cliente", {
-      profesio_auth_token: "u1",
-      // no profesio_user_roles cookie
+      taskao_auth_token: "u1",
+      // no taskao_user_roles cookie
     });
     const response = middleware(request) as any;
 

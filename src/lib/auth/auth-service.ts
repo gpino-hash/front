@@ -103,6 +103,8 @@ export const authService = {
         roles: AuthUser["roles"];
         emailVerified: boolean;
         twoFactorEnabled: boolean;
+        googleId: string | null;
+        hasPassword: boolean;
       }>("/auth/profile");
 
       return {
@@ -111,6 +113,8 @@ export const authService = {
         roles: profile.roles,
         emailVerified: profile.emailVerified,
         twoFactorEnabled: profile.twoFactorEnabled,
+        googleId: profile.googleId || undefined,
+        hasPassword: profile.hasPassword,
       };
     } catch {
       return null;
@@ -299,6 +303,53 @@ export const authService = {
       await apiFetch("/auth/2fa/send-sms", {
         method: "POST",
         body: JSON.stringify({ phone }),
+      });
+      return { success: true };
+    } catch (error) {
+      if (error instanceof ApiRequestError) {
+        return { success: false, error: error.message };
+      }
+      return { success: false, error: "Error de conexión." };
+    }
+  },
+
+  // --- OAuth ---
+
+  /** URL del backend que inicia el flujo OAuth con Google (redirect a Google consent) */
+  getGoogleAuthUrl(): string {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+    return `${baseUrl}/auth/google`;
+  },
+
+  /**
+   * Almacena tokens recibidos del backend OAuth redirect.
+   * El backend redirige a /auth/google/callback?accessToken=...&refreshToken=...&isNewUser=...
+   */
+  storeOAuthTokens(accessToken: string, refreshToken: string) {
+    setTokens(accessToken, refreshToken);
+  },
+
+  /**
+   * Setea las cookies de sesión después de un login OAuth exitoso.
+   * Debe llamarse después de obtener el profile del usuario.
+   */
+  setSessionCookies(userId: string, roles: string[]) {
+    setAuthCookies(userId, roles);
+  },
+
+  /**
+   * Vincular Google: redirige al mismo endpoint OAuth.
+   * Si el usuario ya tiene sesión y el email coincide, el backend vincula automáticamente.
+   */
+  getGoogleLinkUrl(): string {
+    return this.getGoogleAuthUrl();
+  },
+
+  /** Desvincular Google de la cuenta (requiere tener password configurada — el backend lo valida) */
+  async unlinkGoogle(): Promise<{ success: boolean; error?: string }> {
+    try {
+      await apiFetch<{ message: string }>("/auth/google/unlink", {
+        method: "DELETE",
       });
       return { success: true };
     } catch (error) {
