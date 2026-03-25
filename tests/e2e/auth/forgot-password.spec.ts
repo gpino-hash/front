@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { ForgotPasswordPage } from "../page-objects/forgot-password.page";
-import { uniqueEmail, TEST_CLIENT } from "../fixtures/test-data";
+
 
 /**
  * S1-05: Recuperación de contraseña por email

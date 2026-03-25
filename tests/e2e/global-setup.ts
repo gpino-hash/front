@@ -1,4 +1,4 @@
-import { chromium, type FullConfig } from "@playwright/test";
+import { type FullConfig } from "@playwright/test";
 
 /**
  * Global Setup: registra usuarios de test antes de ejecutar la suite.
@@ -9,7 +9,6 @@ import { chromium, type FullConfig } from "@playwright/test";
  */
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-const BASE_URL = process.env.E2E_BASE_URL || "http://localhost:4200";
 
 // Emails fijos para evitar colisiones
 const E2E_CLIENT_EMAIL = `e2e-client-${Date.now()}@test.com`;

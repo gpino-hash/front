@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { ProviderRegisterPage } from "../page-objects/provider-register.page";
 import { uniqueEmail, TEST_PROVIDER } from "../fixtures/test-data";
-import path from "path";
+
 
 /**
  * S1-03: Registro de proveedor (multi-step)
