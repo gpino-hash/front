@@ -1,12 +1,24 @@
 "use client";
 
 import { createContext, useContext, type ReactNode } from "react";
-import { IProviderService, IReviewService, ICategoryService } from "./types";
+import {
+    IProviderService,
+    IReviewService,
+    ICategoryService,
+    ICatalogService,
+    IProviderManagementService,
+    IProviderServiceService,
+    IServiceRequestService,
+} from "./types";
 
 export interface ServiceRegistry {
     providerService: IProviderService;
     reviewService: IReviewService;
     categoryService: ICategoryService;
+    catalogService: ICatalogService;
+    providerManagementService: IProviderManagementService;
+    providerServiceService: IProviderServiceService;
+    serviceRequestService: IServiceRequestService;
 }
 
 const ServiceContext = createContext<ServiceRegistry | null>(null);
