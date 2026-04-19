@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../page-objects/login.page";
 import { ProfilePage } from "../page-objects/profile.page";
 import { uniqueEmail, TEST_CLIENT } from "../fixtures/test-data";
-import { registerUserViaApi } from "../fixtures/api-helpers";
+import { registerUserViaApi, HAS_BACKEND_API } from "../fixtures/api-helpers";
 
 /**
  * S1-07: Página de perfil del usuario (ver + editar)
@@ -15,6 +15,7 @@ import { registerUserViaApi } from "../fixtures/api-helpers";
  */
 
 test.describe("S1-07: User Profile", () => {
+  test.skip(!HAS_BACKEND_API, "Requires backend API");
   test.describe.configure({ mode: "serial" });
 
   let userEmail: string;

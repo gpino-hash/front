@@ -77,7 +77,7 @@ test.describe("S1-05: Forgot Password Flow", () => {
 
     // Debe mostrar error de token inválido o expirado
     await expect(
-      page.getByText(/inválido|expiró|error|token/i)
+      page.locator("p").filter({ hasText: /inválido|expiró|error|token/i }).first()
     ).toBeVisible({ timeout: 5000 });
   });
 });

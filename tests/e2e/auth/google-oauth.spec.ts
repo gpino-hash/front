@@ -3,7 +3,7 @@ import { LoginPage } from "../page-objects/login.page";
 import { RegisterPage } from "../page-objects/register.page";
 import { ProfilePage } from "../page-objects/profile.page";
 import { uniqueEmail, TEST_CLIENT } from "../fixtures/test-data";
-import { registerUserViaApi } from "../fixtures/api-helpers";
+import { registerUserViaApi, HAS_BACKEND_API } from "../fixtures/api-helpers";
 
 /**
  * S1-09: OAuth con Google (Login Social)
@@ -56,6 +56,7 @@ test.describe("S1-09: Google OAuth", () => {
   });
 
   test("sección cuentas vinculadas visible en perfil", async ({ page }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const email = uniqueEmail("google-profile");
     await registerUserViaApi({
       email,

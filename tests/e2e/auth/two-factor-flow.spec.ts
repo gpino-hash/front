@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { HAS_BACKEND_API } from "../fixtures/api-helpers";
 
 /**
  * E2E Tests: Flujo completo de Two-Factor Authentication
@@ -41,6 +42,7 @@ const TEST_USER = {
 // ─── Tests ──────────────────────────────────────────────
 
 test.describe("Two-Factor Authentication - Setup Flow", () => {
+  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated user");
   test.beforeEach(async ({ page }) => {
     // Login as a user without 2FA
     await loginAs(page, TEST_USER.email, TEST_USER.password);
@@ -191,6 +193,7 @@ test.describe("Two-Factor Authentication - Setup Flow", () => {
 });
 
 test.describe("Two-Factor Authentication - Login Flow", () => {
+  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated user");
   test("should redirect to 2FA verification when user has 2FA enabled", async ({
     page,
   }) => {
@@ -338,6 +341,7 @@ test.describe("Two-Factor Authentication - Login Flow", () => {
 });
 
 test.describe("Two-Factor Authentication - Disable Flow", () => {
+  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated user");
   test("should show disable option when 2FA is enabled", async ({ page }) => {
     // This test assumes user is already logged in with 2FA enabled
     await page.goto("/perfil");
@@ -375,6 +379,7 @@ test.describe("Two-Factor Authentication - Disable Flow", () => {
 });
 
 test.describe("Two-Factor Authentication - Recovery Codes", () => {
+  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated user");
   test("should show recovery codes with copy and download buttons", async ({
     page,
   }) => {
@@ -393,6 +398,7 @@ test.describe("Two-Factor Authentication - Recovery Codes", () => {
 });
 
 test.describe("Two-Factor Authentication - Security Indicators", () => {
+  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated user");
   test("should show security badges on verify page", async ({ page }) => {
     await loginAs(page, TEST_USER.email, TEST_USER.password);
     await page.waitForURL(/\/verify-2fa/);

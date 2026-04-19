@@ -25,10 +25,11 @@ export default defineConfig({
 
   webServer: {
     command: process.env.CI
-      ? "npm run start -- --port 4200"
+      ? "node .next/standalone/server.js"
       : "npm run dev",
     url: "http://localhost:4200",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: process.env.CI ? { PORT: "4200" } : {},
   },
 });

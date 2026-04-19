@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { ProviderRegisterPage } from "../page-objects/provider-register.page";
 import { uniqueEmail, TEST_PROVIDER } from "../fixtures/test-data";
+import { HAS_BACKEND_API } from "../fixtures/api-helpers";
 
 
 /**
@@ -17,6 +18,7 @@ test.describe("S1-03: Provider Registration (Multi-step)", () => {
   test("flujo completo de 3 pasos registra proveedor exitosamente", async ({
     page,
   }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const providerPage = new ProviderRegisterPage(page);
     const email = uniqueEmail("prov");
 
@@ -76,6 +78,7 @@ test.describe("S1-03: Provider Registration (Multi-step)", () => {
   test("navegación atrás preserva datos del step anterior", async ({
     page,
   }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API — step 2 needs real category select");
     const providerPage = new ProviderRegisterPage(page);
 
     await providerPage.goto();

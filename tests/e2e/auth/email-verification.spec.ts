@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../page-objects/login.page";
 import { uniqueEmail, TEST_CLIENT } from "../fixtures/test-data";
-import { registerUserViaApi } from "../fixtures/api-helpers";
+import { registerUserViaApi, HAS_BACKEND_API } from "../fixtures/api-helpers";
 
 /**
  * S1-06: Verificación de email
@@ -16,6 +16,7 @@ test.describe("S1-06: Email Verification", () => {
   test.describe.configure({ mode: "serial" });
 
   test("usuario sin verificar ve banner de verificación tras login", async ({ page }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const email = uniqueEmail("verify");
     await registerUserViaApi({
       email,
@@ -38,6 +39,7 @@ test.describe("S1-06: Email Verification", () => {
   test("usuario sin verificar puede navegar por la plataforma", async ({
     page,
   }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const email = uniqueEmail("nav-unverified");
     await registerUserViaApi({
       email,

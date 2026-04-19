@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { RegisterPage } from "../page-objects/register.page";
 import { uniqueEmail, TEST_CLIENT } from "../fixtures/test-data";
-import { registerUserViaApi } from "../fixtures/api-helpers";
+import { registerUserViaApi, HAS_BACKEND_API } from "../fixtures/api-helpers";
 
 /**
  * S1-02: Registro de cliente con validación completa
@@ -19,6 +19,7 @@ test.describe("S1-02: Client Registration", () => {
   test("registro exitoso redirige al dashboard del cliente autenticado", async ({
     page,
   }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const registerPage = new RegisterPage(page);
     const email = uniqueEmail("reg-client");
 
@@ -42,6 +43,7 @@ test.describe("S1-02: Client Registration", () => {
   });
 
   test("registro con email duplicado muestra error", async ({ page }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const email = uniqueEmail("dup");
 
     // Registrar primero vía API para evitar rate limiting
@@ -123,6 +125,7 @@ test.describe("S1-02: Client Registration", () => {
   test("usuario auto-logueado puede acceder al perfil tras registro", async ({
     page,
   }) => {
+    test.skip(!HAS_BACKEND_API, "Requires backend API");
     const registerPage = new RegisterPage(page);
     const email = uniqueEmail("profile-reg");
 

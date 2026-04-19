@@ -6,6 +6,12 @@
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
+/**
+ * Whether a real backend API is available.
+ * In CI without a backend service, E2E tests that call the API directly should be skipped.
+ */
+export const HAS_BACKEND_API = !process.env.CI || !!process.env.E2E_API_AVAILABLE;
+
 export interface ApiTokens {
   accessToken: string;
   refreshToken: string;
