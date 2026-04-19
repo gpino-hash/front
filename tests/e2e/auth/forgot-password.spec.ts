@@ -43,18 +43,16 @@ test.describe("S1-05: Forgot Password Flow", () => {
     await forgotPage.expectOnPage();
   });
 
-  test("email con formato inválido muestra error de validación", async ({
-    page,
-  }) => {
+  test("email con formato inválido no permite submit", async ({ page }) => {
     const forgotPage = new ForgotPasswordPage(page);
     await forgotPage.goto();
     await forgotPage.emailInput.fill("email-sin-arroba");
     await forgotPage.submitButton.click();
 
-    // Debe mostrar error de formato
-    await expect(
-      page.getByRole("alert").filter({ hasText: /email|válido|formato|correo/i }).first()
-    ).toBeVisible({ timeout: 3000 });
+    // El input type="email" dispara validación nativa del browser,
+    // la submission queda bloqueada y la página no cambia al estado de éxito.
+    await expect(page).toHaveURL(/\/forgot-password/);
+    await expect(page.getByRole("heading", { name: /revisá tu correo/i })).not.toBeVisible();
   });
 
   test("link volver al login funciona", async ({ page }) => {
