@@ -77,7 +77,7 @@ export default function ForgotPasswordPage() {
                             </div>
 
                             {/* Form Card */}
-                            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-xl dark:shadow-2xl">
+                            <div className="bg-white dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 rounded-xl p-8 shadow-[0_8px_40px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-2xl">
                                 {error && (
                                     <div className="mb-6 p-4 bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 rounded-lg flex items-start gap-3">
                                         <span className="material-symbols-outlined text-red-500 text-xl mt-0.5">error</span>
@@ -156,7 +156,7 @@ export default function ForgotPasswordPage() {
                             </div>
 
                             {/* Success Card */}
-                            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-xl dark:shadow-2xl">
+                            <div className="bg-white dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 rounded-xl p-8 shadow-[0_8px_40px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-2xl">
                                 <div className="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 flex items-start gap-3 mb-6">
                                     <span className="material-symbols-outlined text-emerald-500 mt-0.5">info</span>
                                     <p className="text-sm text-emerald-700 dark:text-emerald-400/90">

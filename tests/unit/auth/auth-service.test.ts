@@ -101,8 +101,8 @@ describe("authService.login()", () => {
     await authService.login(credentials);
 
     // Verify cookies were set (via document.cookie mock)
-    expect(document.cookie).toContain("profesio_auth_token=u1");
-    expect(document.cookie).toContain('profesio_user_roles=["PROVIDER"]');
+    expect(document.cookie).toContain("taskao_auth_token=u1");
+    expect(document.cookie).toContain('taskao_user_roles=["PROVIDER"]');
   });
 });
 
@@ -189,8 +189,8 @@ describe("authService.logout()", () => {
 
     expect(mockClearTokens).toHaveBeenCalled();
     // Cookies cleared via document.cookie with max-age=0
-    expect(document.cookie).not.toContain("profesio_auth_token");
-    expect(document.cookie).not.toContain("profesio_user_roles");
+    expect(document.cookie).not.toContain("taskao_auth_token");
+    expect(document.cookie).not.toContain("taskao_user_roles");
   });
 });
 
@@ -440,7 +440,7 @@ describe("authService.updateProfile()", () => {
 // ─────────────────────────────────────────────────────────
 describe("authService.hasStoredSession()", () => {
   it("should return true when access token exists in localStorage", () => {
-    localStorage.setItem("profesio_access_token", "some-token");
+    localStorage.setItem("taskao_access_token", "some-token");
 
     expect(authService.hasStoredSession()).toBe(true);
   });

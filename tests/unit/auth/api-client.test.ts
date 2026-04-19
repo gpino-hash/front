@@ -40,8 +40,8 @@ describe("Token management", () => {
   it("should store tokens in localStorage", () => {
     setTokens("access-abc", "refresh-xyz");
 
-    expect(localStorage.getItem("profesio_access_token")).toBe("access-abc");
-    expect(localStorage.getItem("profesio_refresh_token")).toBe("refresh-xyz");
+    expect(localStorage.getItem("taskao_access_token")).toBe("access-abc");
+    expect(localStorage.getItem("taskao_refresh_token")).toBe("refresh-xyz");
   });
 
   it("should retrieve access token from memory first", () => {
@@ -54,16 +54,16 @@ describe("Token management", () => {
     setTokens("access", "refresh");
     clearTokens();
 
-    expect(localStorage.getItem("profesio_access_token")).toBeNull();
-    expect(localStorage.getItem("profesio_refresh_token")).toBeNull();
+    expect(localStorage.getItem("taskao_access_token")).toBeNull();
+    expect(localStorage.getItem("taskao_refresh_token")).toBeNull();
   });
 
   it("should clear auth cookie on clearTokens", () => {
     // Set a cookie first
-    document.cookie = "profesio_auth_token=u1; path=/";
+    document.cookie = "taskao_auth_token=u1; path=/";
     clearTokens();
 
-    expect(document.cookie).not.toContain("profesio_auth_token");
+    expect(document.cookie).not.toContain("taskao_auth_token");
   });
 });
 
