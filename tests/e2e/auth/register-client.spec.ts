@@ -84,7 +84,7 @@ test.describe("S1-02: Client Registration", () => {
     await registerPage.submit();
 
     await expect(
-      page.getByText(/mínimo|caracteres|corto/i)
+      page.getByText(/mínimo|caracteres|corto/i).first()
     ).toBeVisible({ timeout: 5000 });
   });
 

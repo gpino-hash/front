@@ -62,7 +62,7 @@ test.describe("S1-06: Email Verification", () => {
     await page.goto("/verify-email?token=invalid-token-xyz");
 
     await expect(
-      page.getByText(/inválido|expirado|error|no válido/i)
+      page.getByRole("heading", { name: /error|inválido|expirado|no válido/i })
     ).toBeVisible({ timeout: 5000 });
   });
 
