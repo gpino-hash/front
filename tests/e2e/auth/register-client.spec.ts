@@ -101,7 +101,7 @@ test.describe("S1-02: Client Registration", () => {
     await registerPage.submit();
 
     await expect(
-      page.getByText(/8|caracteres|requisitos|segur/i)
+      page.getByRole("alert").filter({ hasText: /8|caracteres|requisitos|segur/i }).first()
     ).toBeVisible({ timeout: 5000 });
   });
 
@@ -118,7 +118,7 @@ test.describe("S1-02: Client Registration", () => {
     await registerPage.submit();
 
     await expect(
-      page.getByText(/coincid|match|igual/i)
+      page.getByRole("alert").filter({ hasText: /coincid|match|igual/i }).first()
     ).toBeVisible({ timeout: 5000 });
   });
 

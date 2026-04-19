@@ -71,7 +71,7 @@ test.describe("S1-06: Email Verification", () => {
 
     // La página muestra "Link inválido" cuando no hay token
     await expect(
-      page.getByText(/inválido|no es válido|link|error/i)
+      page.getByRole("heading", { name: /inválido|no es válido|link|error/i })
     ).toBeVisible({ timeout: 5000 });
   });
 });

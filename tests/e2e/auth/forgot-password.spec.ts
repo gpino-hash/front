@@ -53,7 +53,7 @@ test.describe("S1-05: Forgot Password Flow", () => {
 
     // Debe mostrar error de formato
     await expect(
-      page.getByText(/email|válido|formato|correo/i)
+      page.getByRole("alert").filter({ hasText: /email|válido|formato|correo/i }).first()
     ).toBeVisible({ timeout: 3000 });
   });
 
