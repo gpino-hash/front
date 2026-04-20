@@ -3,7 +3,7 @@ import type { ApiServiceRequest, CreateServiceRequestPayload } from "@/types/api
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-let mockRequests: ApiServiceRequest[] = [
+const mockRequests: ApiServiceRequest[] = [
   {
     id: "req-1",
     customerId: "mock-user",

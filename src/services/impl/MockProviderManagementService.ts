@@ -16,7 +16,7 @@ const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 let mockProvider: ApiProvider | null = null;
 let mockAvailability: ApiAvailability[] = [];
 let mockWorkZones: ApiWorkZone[] = [];
-let mockDocuments: ApiProviderDocument[] = [];
+const mockDocuments: ApiProviderDocument[] = [];
 
 export class MockProviderManagementService implements IProviderManagementService {
   async createProvider(data: CreateProviderPayload): Promise<ApiProvider> {

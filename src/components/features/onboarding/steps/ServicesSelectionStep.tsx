@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCatalog } from "@/hooks/useCatalog";
@@ -19,12 +19,8 @@ export function ServicesSelectionStep({ data, onNext, onBack }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<ApiPublicCategory | null>(null);
   const [services, setServices] = useState<ServiceSelection[]>(data);
 
-  // Auto-select first category
-  useEffect(() => {
-    if (categories.length > 0 && !selectedCategory) {
-      setSelectedCategory(categories[0]);
-    }
-  }, [categories, selectedCategory]);
+  // Auto-select first category (derived state; no need for an effect)
+  const activeCategory = selectedCategory ?? categories[0] ?? null;
 
   const addService = (name: string, serviceId?: string) => {
     if (services.some((s) => s.name === name)) return;
@@ -74,7 +70,7 @@ export function ServicesSelectionStep({ data, onNext, onBack }: Props) {
               onClick={() => setSelectedCategory(cat)}
               className={cn(
                 "px-4 py-2 rounded-xl text-sm font-medium transition-colors",
-                selectedCategory?.id === cat.id
+                activeCategory?.id === cat.id
                   ? "bg-orange-500 text-white"
                   : "bg-slate-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-slate-200 dark:hover:bg-zinc-700"
               )}
@@ -89,9 +85,9 @@ export function ServicesSelectionStep({ data, onNext, onBack }: Props) {
       )}
 
       {/* Sub-services from category */}
-      {selectedCategory && selectedCategory.children.length > 0 && (
+      {activeCategory && activeCategory.children.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {selectedCategory.children.map((child) => {
+          {activeCategory.children.map((child) => {
             const isSelected = services.some((s) => s.name === child.name);
             return (
               <button

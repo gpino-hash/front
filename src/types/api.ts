@@ -231,7 +231,7 @@ export interface CreateProviderServicePayload {
   warranty?: string;
 }
 
-export interface UpdateProviderServicePayload extends Partial<CreateProviderServicePayload> {}
+export type UpdateProviderServicePayload = Partial<CreateProviderServicePayload>;
 
 export interface SetAvailabilityPayload {
   availabilities: {
