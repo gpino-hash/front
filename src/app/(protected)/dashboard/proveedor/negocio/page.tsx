@@ -91,14 +91,13 @@ export default function BusinessProfilePage() {
 
     const loadExtras = async () => {
       const [z, d, a] = await Promise.all([
-        providerManagementService.getAvailability(provider.id).catch(() => [] as ApiAvailability[]),
+        providerManagementService.getWorkZones(provider.id).catch(() => [] as ApiWorkZone[]),
         providerManagementService.getDocuments(provider.id).catch(() => [] as ApiProviderDocument[]),
         providerManagementService.getAvailability(provider.id).catch(() => [] as ApiAvailability[]),
       ]);
-      setAvailability(a);
+      setZones(z);
       setDocuments(d);
-      // Work zones: not yet available as separate getter, use empty for now
-      setZones([]);
+      setAvailability(a);
     };
     loadExtras();
   }, [provider, reset, providerManagementService]);
@@ -201,8 +200,8 @@ export default function BusinessProfilePage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Input label="Teléfono" {...register("phone")} />
-              <Input label="Tarifa por hora (ARS)" type="number" {...register("hourlyRate")} />
-              <Input label="Radio de trabajo (km)" type="number" {...register("workRadius")} />
+              <Input label="Tarifa por hora (ARS)" type="number" {...register("hourlyRate", { valueAsNumber: true })} />
+              <Input label="Radio de trabajo (km)" type="number" {...register("workRadius", { valueAsNumber: true })} />
             </div>
             <div>
               <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1.5">Modalidad</label>

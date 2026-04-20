@@ -60,6 +60,7 @@ export interface IProviderManagementService {
   getAvailability(providerId: string): Promise<ApiAvailability[]>;
   setAvailability(providerId: string, data: SetAvailabilityPayload): Promise<void>;
   toggleAvailability(providerId: string, available: boolean): Promise<void>;
+  getWorkZones(providerId: string): Promise<ApiWorkZone[]>;
   addWorkZone(providerId: string, data: CreateWorkZonePayload): Promise<ApiWorkZone>;
   removeWorkZone(zoneId: string): Promise<void>;
   getDocuments(providerId: string): Promise<ApiProviderDocument[]>;

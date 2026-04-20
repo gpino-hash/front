@@ -81,8 +81,8 @@ export default function ProviderDashboardPage() {
       icon: "work",
       label: "Solicitudes abiertas",
       value: openRequests.length,
-      color: "text-blue-500",
-      bg: "bg-blue-50 dark:bg-blue-950/30",
+      color: "text-orange-500",
+      bg: "bg-orange-50 dark:bg-orange-950/30",
     },
     {
       icon: "star",
@@ -176,7 +176,7 @@ export default function ProviderDashboardPage() {
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-bold flex items-center gap-2">
-            <span className="material-symbols-outlined text-blue-500">work</span>
+            <span className="material-symbols-outlined text-orange-500">work</span>
             Solicitudes abiertas
           </CardTitle>
         </CardHeader>

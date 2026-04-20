@@ -146,7 +146,7 @@ export default function ProviderServicesPage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <Input label="Precio (ARS) *" type="number" error={errors.price?.message} {...register("price")} />
+                <Input label="Precio (ARS) *" type="number" error={errors.price?.message} {...register("price", { valueAsNumber: true })} />
                 <div>
                   <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1.5">
                     Tipo de precio
@@ -160,7 +160,7 @@ export default function ProviderServicesPage() {
                     ))}
                   </select>
                 </div>
-                <Input label="Duración (min)" type="number" {...register("estimatedDuration")} />
+                <Input label="Duración (min)" type="number" {...register("estimatedDuration", { valueAsNumber: true })} />
               </div>
 
               <div className="flex gap-6">

@@ -57,6 +57,10 @@ export class ApiProviderManagementService implements IProviderManagementService 
     });
   }
 
+  async getWorkZones(providerId: string): Promise<ApiWorkZone[]> {
+    return apiFetch<ApiWorkZone[]>(`/providers/${providerId}/work-zones`);
+  }
+
   async addWorkZone(providerId: string, data: CreateWorkZonePayload): Promise<ApiWorkZone> {
     return apiFetch<ApiWorkZone>(`/providers/${providerId}/work-zones`, {
       method: "POST",

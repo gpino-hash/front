@@ -90,6 +90,11 @@ export class MockProviderManagementService implements IProviderManagementService
     }
   }
 
+  async getWorkZones(providerId: string): Promise<ApiWorkZone[]> {
+    await delay(300);
+    return mockWorkZones.filter((z) => z.providerId === providerId);
+  }
+
   async addWorkZone(providerId: string, data: CreateWorkZonePayload): Promise<ApiWorkZone> {
     await delay(400);
     const zone: ApiWorkZone = {

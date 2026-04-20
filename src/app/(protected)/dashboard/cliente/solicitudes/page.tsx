@@ -74,7 +74,7 @@ export default function SolicitudesPage() {
         <h1 className="text-2xl font-extrabold text-zinc-800 dark:text-zinc-100">Mis Solicitudes</h1>
         <Link
           href="/dashboard/cliente/nueva-solicitud"
-          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+          className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
         >
           <span className="material-symbols-outlined text-lg">add</span>
           Nueva
