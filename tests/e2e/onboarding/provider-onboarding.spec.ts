@@ -1,44 +1,60 @@
 import { test, expect } from "@playwright/test";
-import { HAS_BACKEND_API } from "../fixtures/api-helpers";
+import { fakeAuth } from "../fixtures/fake-auth";
 
 /**
  * Sprint 2: Provider onboarding wizard (/perfil/onboarding).
  *
  * 5-step flow: Personal → Services → WorkZones → Availability → Documents.
- * Requires authenticated user; skipped in CI without backend.
+ * The route is proxy-protected (src/proxy.ts) but the form itself does
+ * not read `useAuth().user`, so fakeAuth is enough to reach it.
  */
 
 test.describe("S2-Onboarding: Provider onboarding wizard", () => {
-  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated session");
+  test.beforeEach(async ({ context }) => {
+    await fakeAuth(context, { role: "PROVIDER" });
+  });
 
   test("loads step 1 with personal data form", async ({ page }) => {
     await page.goto("/perfil/onboarding");
 
-    // Step indicator visible
-    await expect(page.locator("h1, h2").first()).toBeVisible({ timeout: 10_000 });
+    await expect(
+      page.getByRole("heading", { name: /registrate como proveedor/i }),
+    ).toBeVisible({ timeout: 10_000 });
 
-    // Personal data form fields
-    await expect(page.getByLabel(/nombre profesional|displayName/i).first()).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /datos personales/i }),
+    ).toBeVisible();
+
+    await expect(page.getByLabel(/nombre profesional/i)).toBeVisible();
   });
 
-  test("step indicator shows 5 steps", async ({ page }) => {
+  test("step indicator shows the 5 configured steps", async ({ page }) => {
     await page.goto("/perfil/onboarding");
 
-    // At least the step numbers 1..5 should be present as circles/labels
+    // The indicator renders numbered circles 1..5
     for (const n of [1, 2, 3, 4, 5]) {
-      await expect(page.getByText(String(n)).first()).toBeVisible({ timeout: 5_000 });
+      await expect(page.getByText(String(n), { exact: true }).first()).toBeVisible({
+        timeout: 5_000,
+      });
     }
   });
 
-  test("step 1 validates required fields before advancing", async ({ page }) => {
+  test("step 1 rejects an empty submit with validation error", async ({ page }) => {
     await page.goto("/perfil/onboarding");
 
-    const nextBtn = page.getByRole("button", { name: /siguiente|continuar/i }).first();
-    await nextBtn.click();
+    await page.getByLabel(/nombre profesional/i).fill("");
+    await page
+      .getByRole("button", { name: /siguiente|continuar/i })
+      .first()
+      .click();
 
-    // Should surface at least one validation error
+    // Form-level error surfaces either as role=alert or a red helper text
     await expect(
-      page.getByRole("alert").first().or(page.locator(".text-red-500").first())
+      page
+        .getByText(/mínimo|requerido|obligatorio/i)
+        .or(page.locator("[role='alert']"))
+        .first(),
     ).toBeVisible({ timeout: 5_000 });
   });
+
 });
