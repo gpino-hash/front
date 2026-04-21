@@ -103,6 +103,7 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'http://localhost:3000' }}
+          NEXT_PUBLIC_USE_MOCKS: 'true'
 
       - name: Copy static files for standalone server
         run: |
@@ -113,6 +114,7 @@ jobs:
         run: npx playwright test
         env:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'http://localhost:3000' }}
+          NEXT_PUBLIC_USE_MOCKS: 'true'
 
       - name: Upload Playwright report
         if: always()

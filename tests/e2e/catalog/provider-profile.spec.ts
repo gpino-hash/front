@@ -7,7 +7,7 @@ import { test, expect } from "@playwright/test";
  * marketplace-web/src/lib/mock-data/providers.ts.
  */
 
-const KNOWN_PROVIDER_ID = "prov1";
+const KNOWN_PROVIDER_ID = "p1";
 
 test.describe("Proveedores — Public profile", () => {
   test("renders provider header with name and rating", async ({ page }) => {

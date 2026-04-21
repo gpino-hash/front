@@ -1,23 +1,27 @@
 import { test, expect } from "@playwright/test";
-import { HAS_BACKEND_API } from "../fixtures/api-helpers";
+import { fakeAuth } from "../fixtures/fake-auth";
 
 /**
  * Sprint 2: Client dashboard (/dashboard/cliente).
  *
- * Requires authenticated session → skipped in CI without a backend.
+ * The page reads MOCK_REQUESTS directly from src/lib/mock-data — no
+ * `useAuth().user?.id` dependency — so we only need to bypass the
+ * Next.js proxy's cookie check (see src/proxy.ts). `fakeAuth` plants
+ * the two cookies the proxy looks for; no backend required.
  */
 
 test.describe("S2-Cliente: Client dashboard", () => {
-  test.skip(!HAS_BACKEND_API, "Requires backend API for authenticated session");
+  test.beforeEach(async ({ context }) => {
+    await fakeAuth(context, { role: "CLIENT" });
+  });
 
   test("renders heading and stats", async ({ page }) => {
     await page.goto("/dashboard/cliente");
 
     await expect(
-      page.getByRole("heading", { name: /mis solicitudes/i, level: 1 })
+      page.getByRole("heading", { name: /mis solicitudes/i, level: 1 }),
     ).toBeVisible();
 
-    // 4 stat cards
     await expect(page.getByText(/activas/i).first()).toBeVisible();
     await expect(page.getByText(/completados/i).first()).toBeVisible();
     await expect(page.getByText(/gastado/i).first()).toBeVisible();
@@ -33,7 +37,10 @@ test.describe("S2-Cliente: Client dashboard", () => {
 
   test("nueva-solicitud CTA navigates", async ({ page }) => {
     await page.goto("/dashboard/cliente");
-    await page.getByRole("link", { name: /nueva solicitud/i }).first().click();
+    await page
+      .getByRole("link", { name: /nueva solicitud/i })
+      .first()
+      .click();
     await expect(page).toHaveURL(/\/dashboard\/cliente\/nueva-solicitud/);
   });
 
