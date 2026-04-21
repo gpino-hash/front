@@ -24,14 +24,16 @@ interface NavItem {
 }
 
 const clientNav: NavItem[] = [
-    { label: "Mis Proyectos", href: "/dashboard/cliente", icon: "format_list_bulleted" },
-    { label: "Mensajes", href: "#", icon: "mail" },
+    { label: "Mis Solicitudes", href: "/dashboard/cliente", icon: "format_list_bulleted" },
+    { label: "Nueva Solicitud", href: "/dashboard/cliente/nueva-solicitud", icon: "add_circle" },
+    { label: "Mensajes", href: "/dashboard/cliente/mensajes", icon: "mail" },
 ];
 
 const providerNav: NavItem[] = [
-    { label: "Trabajos", href: "/dashboard/proveedor", icon: "work" },
+    { label: "Panel", href: "/dashboard/proveedor", icon: "dashboard" },
+    { label: "Servicios", href: "/dashboard/proveedor/servicios", icon: "handyman" },
     { label: "Agenda", href: "/dashboard/proveedor/agenda", icon: "calendar_month" },
-    { label: "Ingresos", href: "#", icon: "payments" },
+    { label: "Oportunidades", href: "/dashboard/proveedor/oportunidades", icon: "work" },
 ];
 
 /* ═══════════════════════════════════════════════════════
