@@ -43,12 +43,17 @@ export default function PendingVerificationPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <Link href="/perfil" className="flex-1">
-                        <Button variant="outline" className="w-full h-14 rounded-xl">
+                        <Button
+                            variant="outline"
+                            className="w-full h-14 rounded-xl border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-slate-50 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-200 focus-visible:ring-orange-500/40"
+                        >
                             Completar perfil
                         </Button>
                     </Link>
                     <Link href="/" className="flex-1">
-                        <Button className="w-full h-14 rounded-xl">
+                        <Button
+                            className="w-full h-14 rounded-xl bg-orange-500 hover:bg-orange-600 text-white focus-visible:ring-orange-500/40"
+                        >
                             Explorar plataforma
                         </Button>
                     </Link>
