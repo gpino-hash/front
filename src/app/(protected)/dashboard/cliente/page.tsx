@@ -322,7 +322,7 @@ export default function ClientDashboardPage() {
 
       {/* Cancel Modal */}
       {cancelTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm p-4">
           <div className="w-full max-w-sm bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-xl animate-scale-in border border-slate-200 dark:border-zinc-800">
             <div className="flex items-center gap-3 mb-4">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-50 dark:bg-red-950/40 text-red-500 dark:text-red-400">
